@@ -10,18 +10,19 @@ import ModelCostCalculator from "@/feature/models/components/cost-calculator";
 import ModelNotFound from "@/feature/models/components/not-found";
 import type { Model } from "@/feature/models/data/schema";
 import { getAvailableCostMethods } from "@/feature/models/data/utils";
-import { backendApi } from "@/lib/api";
-import { useQuery } from "@tanstack/react-query";
+// import { backendApi } from "@/lib/api";
+// import { useQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
-import type { AxiosResponse } from "axios";
+// import type { AxiosResponse } from "axios";
 import {
   BoxSelect,
   ChevronsUpDown,
   DollarSign,
   FileText,
-  LoaderCircle,
+  // LoaderCircle,
   Zap,
 } from "lucide-react";
+import data from "@/feature/models/data/data.json";
 
 export const Route = createFileRoute("/models/$modelName")({
   component: ModelInfoPage,
@@ -35,30 +36,32 @@ export default function ModelInfoPage() {
     { title: modelName, link: `/models/${modelName}` },
   ];
 
-  const {
-    data: model,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["model", modelName],
-    queryFn: async () => {
-      const { data } = await backendApi.get<undefined, AxiosResponse<Model[]>>(
-        `/models?model_name=${modelName}`
-      );
-      if (data.length > 1) return null;
-      return data.length === 0 ? null : data[0];
-    },
-  });
+  const model = data.find((model) => model.model_name === modelName) as Model;
 
-  if (isLoading)
-    return (
-      <div>
-        <LoaderCircle className="h-4 w-4 animate-spin mr-2" />
-        Loading...
-      </div>
-    );
+  // const {
+  //   data: model,
+  //   isLoading,
+  //   isError,
+  // } = useQuery({
+  //   queryKey: ["model", modelName],
+  //   queryFn: async () => {
+  //     const { data } = await backendApi.get<undefined, AxiosResponse<Model[]>>(
+  //       `/models?model_name=${modelName}`
+  //     );
+  //     if (data.length > 1) return null;
+  //     return data.length === 0 ? null : data[0];
+  //   },
+  // });
 
-  if (isError) return <div>Failed to fetch model data..</div>;
+  // if (isLoading)
+  //   return (
+  //     <div>
+  //       <LoaderCircle className="h-4 w-4 animate-spin mr-2" />
+  //       Loading...
+  //     </div>
+  //   );
+
+  // if (isError) return <div>Failed to fetch model data..</div>;
 
   if (!model) return <ModelNotFound />;
 
