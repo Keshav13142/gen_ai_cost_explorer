@@ -39,7 +39,7 @@ export function calculateCost(
   model: Model,
   inputUnits: number,
   outputUnits: number,
-  method?: CostMethod,
+  method?: CostMethod
 ): { inputCost: number; outputCost: number } {
   if (!method || !possibleCostMethods.some((pcm) => pcm === method)) {
     console.error(`Unsupported cost method: ${method}`);

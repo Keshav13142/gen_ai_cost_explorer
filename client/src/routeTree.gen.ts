@@ -62,11 +62,48 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  ModelsModelNameRoute,
-  ModelsIndexRoute,
-})
+interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
+  '/models/$modelName': typeof ModelsModelNameRoute
+  '/models': typeof ModelsIndexRoute
+}
+
+interface FileRoutesByTo {
+  '/': typeof IndexRoute
+  '/models/$modelName': typeof ModelsModelNameRoute
+  '/models': typeof ModelsIndexRoute
+}
+
+interface FileRoutesById {
+  '/': typeof IndexRoute
+  '/models/$modelName': typeof ModelsModelNameRoute
+  '/models/': typeof ModelsIndexRoute
+}
+
+interface FileRouteTypes {
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths: '/' | '/models/$modelName' | '/models'
+  fileRoutesByTo: FileRoutesByTo
+  to: '/' | '/models/$modelName' | '/models'
+  id: '/' | '/models/$modelName' | '/models/'
+  fileRoutesById: FileRoutesById
+}
+
+interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
+  ModelsModelNameRoute: typeof ModelsModelNameRoute
+  ModelsIndexRoute: typeof ModelsIndexRoute
+}
+
+const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
+  ModelsModelNameRoute: ModelsModelNameRoute,
+  ModelsIndexRoute: ModelsIndexRoute,
+}
+
+export const routeTree = rootRoute
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
