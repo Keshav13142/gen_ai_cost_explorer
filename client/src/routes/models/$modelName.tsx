@@ -67,7 +67,7 @@ export default function ModelInfoPage() {
 
   const renderInfoItem = (
     label: string,
-    value: string | number | undefined
+    value: string | number | undefined,
   ) => {
     if (value === undefined) return null;
     return (
@@ -131,7 +131,7 @@ export default function ModelInfoPage() {
                   {renderInfoItem("Max Output Tokens", model.max_output_tokens)}
                   {renderInfoItem(
                     "Output Vector Size",
-                    model.output_vector_size
+                    model.output_vector_size,
                   )}
                   {model.source ? (
                     <Collapsible className="mt-2">
@@ -158,25 +158,25 @@ export default function ModelInfoPage() {
                     <div className="flex flex-wrap gap-2">
                       {renderBadge(
                         "Function Calling",
-                        model.supports_function_calling
+                        model.supports_function_calling,
                       )}
                       {renderBadge(
                         "Parallel Function Calling",
-                        model.supports_parallel_function_calling
+                        model.supports_parallel_function_calling,
                       )}
                       {renderBadge("Vision", model.supports_vision)}
                       {renderBadge(
                         "Assistant Prefill",
-                        model.supports_assistant_prefill
+                        model.supports_assistant_prefill,
                       )}
                       {renderBadge("Tool Choice", model.supports_tool_choice)}
                       {renderBadge(
                         "System Messages",
-                        model.supports_system_messages
+                        model.supports_system_messages,
                       )}
                       {renderBadge(
                         "Response Schema",
-                        model.supports_response_schema
+                        model.supports_response_schema,
                       )}
                     </div>
                   </CardContent>
@@ -197,103 +197,103 @@ export default function ModelInfoPage() {
                       "Input Cost per Token",
                       model.input_cost_per_token
                         ? `$${model.input_cost_per_token}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Token",
                       model.output_cost_per_token
                         ? `$${model.output_cost_per_token}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Pixel",
                       model.input_cost_per_pixel
                         ? `$${model.input_cost_per_pixel}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Pixel",
                       model.output_cost_per_pixel
                         ? `$${model.output_cost_per_pixel}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Second",
                       model.input_cost_per_second
                         ? `$${model.input_cost_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Second",
                       model.output_cost_per_second
                         ? `$${model.output_cost_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Character",
                       model.input_cost_per_character
                         ? `$${model.input_cost_per_character}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Character",
                       model.output_cost_per_character
                         ? `$${model.output_cost_per_character}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Image",
                       model.input_cost_per_image
                         ? `$${model.input_cost_per_image}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Image",
                       model.output_cost_per_image
                         ? `$${model.output_cost_per_image}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Video Second",
                       model.input_cost_per_video_per_second
                         ? `$${model.input_cost_per_video_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Video Second",
                       model.output_cost_per_video_per_second
                         ? `$${model.output_cost_per_video_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Audio Second",
                       model.input_cost_per_audio_per_second
                         ? `$${model.input_cost_per_audio_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Output Cost per Audio Second",
                       model.output_cost_per_audio_per_second
                         ? `$${model.output_cost_per_audio_per_second}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Cost per Image",
                       model.cost_per_image
                         ? `$${model.cost_per_image}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Token (Batch)",
                       model.input_cost_per_token_batch_requests
                         ? `$${model.input_cost_per_token_batch_requests}`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Input Cost per Request",
                       model.input_cost_per_request
                         ? `$${model.input_cost_per_request}`
-                        : undefined
+                        : undefined,
                     )}
                   </div>
                 </CardContent>
@@ -311,37 +311,37 @@ export default function ModelInfoPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {renderInfoItem(
                       "Tool Use System Prompt Tokens",
-                      model.tool_use_system_prompt_tokens
+                      model.tool_use_system_prompt_tokens,
                     )}
                     {renderInfoItem(
                       "Max Images per Prompt",
-                      model.max_images_per_prompt
+                      model.max_images_per_prompt,
                     )}
                     {renderInfoItem(
                       "Max Videos per Prompt",
-                      model.max_videos_per_prompt
+                      model.max_videos_per_prompt,
                     )}
                     {renderInfoItem(
                       "Max Video Length",
                       model.max_video_length
                         ? `${model.max_video_length} seconds`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Max Audio Length",
                       model.max_audio_length_hours
                         ? `${model.max_audio_length_hours} hours`
-                        : undefined
+                        : undefined,
                     )}
                     {renderInfoItem(
                       "Max Audio per Prompt",
-                      model.max_audio_per_prompt
+                      model.max_audio_per_prompt,
                     )}
                     {renderInfoItem(
                       "Max PDF Size",
                       model.max_pdf_size_mb
                         ? `${model.max_pdf_size_mb} MB`
-                        : undefined
+                        : undefined,
                     )}
                   </div>
                 </CardContent>
