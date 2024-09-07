@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { Ban } from "lucide-react";
+import { useFilters } from "../hooks/use-filters";
 
 interface DataTableColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -31,6 +32,8 @@ export function DataTableColumnHeader<TData, TValue>({
   if (!column.getCanSort()) {
     return <div className={cn(className)}>{title}</div>;
   }
+
+  const { setFilters } = useFilters("/models/");
 
   return (
     <div className={cn("flex items-center space-x-2", className)}>
@@ -60,7 +63,12 @@ export function DataTableColumnHeader<TData, TValue>({
             <ArrowDownIcon className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             Desc
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => column.clearSorting()}>
+          <DropdownMenuItem
+            onClick={() => {
+              column.clearSorting();
+              setFilters({ sort: undefined });
+            }}
+          >
             <Ban className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
             None
           </DropdownMenuItem>

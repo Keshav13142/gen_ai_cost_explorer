@@ -10,7 +10,6 @@ import ModelCostCalculator from "@/feature/models/components/cost-calculator";
 import ModelNotFound from "@/feature/models/components/not-found";
 import data from "@/feature/models/data/data.json";
 import type { Model } from "@/feature/models/data/schema";
-import { getAvailableCostMethods } from "@/feature/models/data/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   BoxSelect,
@@ -19,6 +18,7 @@ import {
   FileText,
   Zap,
 } from "lucide-react";
+import { getAvailableCostMethods } from "../../feature/models/utils/cost-calculations";
 
 export const Route = createFileRoute("/models/$modelName")({
   component: ModelInfoPage,

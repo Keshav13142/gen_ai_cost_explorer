@@ -10,6 +10,10 @@ export const columns: ColumnDef<Model>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Model Name" />
     ),
+    filterFn: (row, id, value) => {
+      const rowValue = row.getValue(id) as string;
+      return rowValue?.toLowerCase().includes(value.toLowerCase());
+    },
   },
   {
     accessorKey: "mode",

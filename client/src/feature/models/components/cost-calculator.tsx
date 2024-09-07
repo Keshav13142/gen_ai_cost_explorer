@@ -17,7 +17,7 @@ import {
   calculateCost,
   getAvailableCostMethods,
   type CostMethod,
-} from "../data/utils";
+} from "../utils/cost-calculations";
 
 const DEFAULT_INPUT_UNITS = 100;
 const DEFAULT_OUTPUT_UNITS = 500;
@@ -30,20 +30,20 @@ const ModelCostCalculator = ({ model }: { model: Model }) => {
 
   const availableMethods = useMemo(
     () => getAvailableCostMethods(model),
-    [model],
+    [model]
   );
 
   const [selectedMethod, setSelectedMethod] = useState<CostMethod | undefined>(
-    availableMethods[0],
+    availableMethods[0]
   );
 
   const hasInputCost = useMemo(
     () => selectedMethod && !!model[`input_cost_per_${selectedMethod}`],
-    [selectedMethod, model],
+    [selectedMethod, model]
   );
   const hasOutputCost = useMemo(
     () => selectedMethod && !!model[`output_cost_per_${selectedMethod}`],
-    [selectedMethod, model],
+    [selectedMethod, model]
   );
 
   if (availableMethods.length === 0)
@@ -90,8 +90,7 @@ const ModelCostCalculator = ({ model }: { model: Model }) => {
                       {method
                         .split("_")
                         .map(
-                          (word) =>
-                            word.charAt(0).toUpperCase() + word.slice(1),
+                          (word) => word.charAt(0).toUpperCase() + word.slice(1)
                         )
                         .join(" ")}
                     </SelectItem>
@@ -104,7 +103,7 @@ const ModelCostCalculator = ({ model }: { model: Model }) => {
                 htmlFor="input-units"
                 className={cn(
                   "text-sm font-medium",
-                  !hasInputCost && selectedMethod && "text-muted-foreground",
+                  !hasInputCost && selectedMethod && "text-muted-foreground"
                 )}
               >
                 Input Units{" "}
@@ -126,7 +125,7 @@ const ModelCostCalculator = ({ model }: { model: Model }) => {
                 htmlFor="output-units"
                 className={cn(
                   "text-sm font-medium",
-                  !hasOutputCost && selectedMethod && "text-muted-foreground",
+                  !hasOutputCost && selectedMethod && "text-muted-foreground"
                 )}
               >
                 Output Units{" "}
@@ -148,7 +147,7 @@ const ModelCostCalculator = ({ model }: { model: Model }) => {
                 htmlFor="api-calls"
                 className={cn(
                   "text-sm font-medium",
-                  !selectedMethod && "text-muted-foreground",
+                  !selectedMethod && "text-muted-foreground"
                 )}
               >
                 Api Calls

@@ -4,6 +4,7 @@ import type { Table } from "@tanstack/react-table";
 import { DebouncedInput } from "@/components/debounced-input";
 import { Button } from "@/components/ui/button";
 import { modes, providers } from "@/feature/models/data/data";
+import { useFilters } from "../hooks/use-filters";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { DataTableViewOptions } from "./data-table-view-options";
 
@@ -15,6 +16,7 @@ export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
+  const { setFilters, resetFilters } = useFilters("/models/");
 
   return (
     <div className="flex items-center justify-between">
@@ -44,7 +46,7 @@ export function DataTableToolbar<TData>({
         {isFiltered && (
           <Button
             variant="ghost"
-            onClick={() => table.resetColumnFilters()}
+            onClick={resetFilters}
             className="h-8 px-2 lg:px-3"
           >
             Reset
