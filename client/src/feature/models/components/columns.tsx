@@ -12,7 +12,7 @@ export const columns: ColumnDef<Model>[] = [
     ),
     filterFn: (row, id, value) => {
       const rowValue = row.getValue(id) as string;
-      return rowValue?.toLowerCase().includes(value.toLowerCase());
+      return rowValue?.toLowerCase().includes(value.toLowerCase().trim());
     },
   },
   {
