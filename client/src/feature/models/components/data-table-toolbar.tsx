@@ -15,7 +15,8 @@ interface DataTableToolbarProps<TData> {
 export function DataTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+  const isFiltered =
+    table.getState().columnFilters.filter((c) => Boolean(c.value)).length > 0;
   const { setFilters, resetFilters } = useFilters("/models/");
 
   return (
