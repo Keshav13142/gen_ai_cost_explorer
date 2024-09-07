@@ -1,4 +1,3 @@
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -10,14 +9,16 @@ import ModelCostCalculator from "@/feature/models/components/cost-calculator";
 import ModelNotFound from "@/feature/models/components/not-found";
 import data from "@/feature/models/data/data.json";
 import type { Model } from "@/feature/models/data/schema";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useRouter } from "@tanstack/react-router";
 import {
   BoxSelect,
+  ChevronLeft,
   ChevronsUpDown,
   DollarSign,
   FileText,
   Zap,
 } from "lucide-react";
+import { Button } from "../../components/ui/button";
 import { getAvailableCostMethods } from "../../feature/models/utils/cost-calculations";
 
 export const Route = createFileRoute("/models/$modelName")({
@@ -26,11 +27,7 @@ export const Route = createFileRoute("/models/$modelName")({
 
 export default function ModelInfoPage() {
   const { modelName } = Route.useParams();
-
-  const breadCrumbItems = [
-    { title: "All Models", link: "/" },
-    { title: modelName, link: `/models/${modelName}` },
-  ];
+  const { history } = useRouter();
 
   const model = data.find((model) => model.model_name === modelName) as Model;
 
@@ -76,8 +73,11 @@ export default function ModelInfoPage() {
   const hasPricingInfo = costMethods.length > 0;
 
   return (
-    <div className="space-y-5">
-      <Breadcrumbs items={breadCrumbItems} />
+    <div className="space-y-3">
+      <Button onClick={() => history.go(-1)} variant="ghost">
+        <ChevronLeft className="h-5 w-5 mr-2" />
+        Go Back
+      </Button>
       <div className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
