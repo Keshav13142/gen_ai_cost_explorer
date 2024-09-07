@@ -73,7 +73,7 @@ export default function ModelInfoPage() {
   const hasPricingInfo = costMethods.length > 0;
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       <Button onClick={() => history.go(-1)} variant="ghost">
         <ChevronLeft className="h-5 w-5 mr-2" />
         Go Back
