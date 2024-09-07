@@ -17,7 +17,7 @@ export const columns: ColumnDef<Model>[] = [
       <DataTableColumnHeader column={column} title="Mode" />
     ),
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value?.includes(row.getValue(id));
     },
   },
   {
@@ -44,7 +44,7 @@ export const columns: ColumnDef<Model>[] = [
       <DataTableColumnHeader column={column} title="Provider" />
     ),
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+      return value?.includes(row.getValue(id));
     },
   },
   {
