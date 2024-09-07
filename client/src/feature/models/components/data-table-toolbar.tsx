@@ -1,8 +1,8 @@
 import { Cross2Icon } from "@radix-ui/react-icons";
 import type { Table } from "@tanstack/react-table";
 
+import { DebouncedInput } from "@/components/debounced-input";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { modes, providers } from "@/feature/models/data/data";
 import { DataTableFacetedFilter } from "./data-table-faceted-filter";
 import { DataTableViewOptions } from "./data-table-view-options";
@@ -19,14 +19,12 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <Input
+        <DebouncedInput
           placeholder="Filter models by name..."
           value={
             (table.getColumn("model_name")?.getFilterValue() as string) ?? ""
           }
-          onChange={(event) =>
-            table.getColumn("model_name")?.setFilterValue(event.target.value)
-          }
+          onChange={(value) => setFilters({ search: value })}
           className="h-8 w-[150px] lg:w-[250px]"
         />
         {table.getColumn("mode") && (
