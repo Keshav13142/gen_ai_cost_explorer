@@ -79,10 +79,6 @@ export default function ModelInfoPage() {
     <div className="space-y-5">
       <Breadcrumbs items={breadCrumbItems} />
       <div className="space-y-4">
-        <div className="text-2xl font-bold flex items-center justify-between">
-          {model.model_name}
-          <Badge variant="outline">{model.litellm_provider}</Badge>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Card>
             <CardHeader className="pb-2">
@@ -92,6 +88,8 @@ export default function ModelInfoPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
+              {renderInfoItem("Name", model.model_name)}
+              {renderInfoItem("Provider", model.litellm_provider)}
               {renderInfoItem("Mode", model.mode)}
               {renderInfoItem("Max Tokens", model.max_tokens)}
               {renderInfoItem("Max Input Tokens", model.max_input_tokens)}
