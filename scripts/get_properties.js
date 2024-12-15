@@ -1,4 +1,4 @@
-const models = require("./transformedModels.json");
+import models from "./transformedModels.json" with { type: "json" };
 
 function getModelProperties(models) {
   const properties = new Set();
